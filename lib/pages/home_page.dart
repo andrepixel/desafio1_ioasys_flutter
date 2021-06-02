@@ -1,3 +1,5 @@
+import 'package:desafio1_ioasys_flutter/components/appBar_comp.dart';
+import 'package:desafio1_ioasys_flutter/components/drawer_comp.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,73 +10,46 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double weigthHuman = 0;
   double heigthHuman = 0;
-  double IMC = 0;
+  double imc = 0;
   String answer = '';
   var answersText = <Container>[];
 
-  @override
-  void initState() {
-    super.initState();
-    answersText.add(answerText());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   answersText.add(answerText());
+  // }
 
-  Widget answerText() {
-      return Container(
-        padding: EdgeInsets.only(top: 40),
-        child: Text(
-          '$answer',
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
+  Container answerText() {
+    return Container(
+      child: Text(
+        '$answer',
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w600,
+          fontSize: 14,
         ),
-      );
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
+      appBar: CustomAppBar('Calculadora IMC', true),
       body: Column(
         children: [
-          Container(
-            width: 375,
-            height: 63,
-            color: Color(0xFFC1007E),
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 25, 0),
-                    child: Image.asset('assets/images/logo_home 1.png'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 135, 0),
-                    child: Text(
-                      'Calculadora IMC',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                      child: Image.asset(
-                        'assets/images/Vector.png',
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushNamed('/home');
-                      }),
-                ],
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(136, 36, 136, 47),
+            // child: ClipRRect(
+            //   borderRadius: BorderRadius.circular(50.0),
+            //   child: Image.network(
+            //     'https://avatars.githubusercontent.com/u/47698724?s=400&u=dbe5037d21202ec0676162bce4abe5480f8f80f9&v=4',
+
+            //   ),
+            // ),
             child: Image.asset('assets/images/image 2.png'),
           ),
           Padding(
@@ -135,22 +110,23 @@ class _HomePageState extends State<HomePage> {
                           ),
                         )),
                     onPressed: () {
-                      IMC = (weigthHuman / ((heigthHuman/100) * (heigthHuman/100)));
-                      print(IMC);
+                      imc = (weigthHuman /
+                          ((heigthHuman / 100) * (heigthHuman / 100)));
+                      print(imc);
 
-                      if (IMC < 18.6) {
+                      if (imc < 18.6) {
                         answer = 'Você está abaixo do Peso';
-                      } else if (IMC > 18.6 && IMC < 24.9) {
+                      } else if (imc > 18.6 && imc < 24.9) {
                         answer = 'Você está no seu Peso Ideal';
-                      } else if (IMC > 24.9 && IMC < 29.9) {
+                      } else if (imc > 24.9 && imc < 29.9) {
                         answer = 'Você está Levemente acima do Peso';
-                      } else if (IMC > 29.9 && IMC < 34.9) {
+                      } else if (imc > 29.9 && imc < 34.9) {
                         answer = 'Você está com Obesidade Grau I';
-                      } else if (IMC > 34.9 && IMC < 39.9) {
+                      } else if (imc > 34.9 && imc < 39.9) {
                         answer = 'Você está com Obesidade Grau I';
-                      } else if (IMC > 34.9 && IMC < 39.9) {
+                      } else if (imc > 34.9 && imc < 39.9) {
                         answer = 'Você está com Obesidade Grau II';
-                      } else if (IMC > 39.0) {
+                      } else if (imc > 39.0) {
                         answer = 'Você está com Obesidade Grau III';
                       }
                       print(answer);
@@ -161,10 +137,10 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
-                answerText(),
               ],
             ),
           ),
+          answerText(),
         ],
       ),
     );
