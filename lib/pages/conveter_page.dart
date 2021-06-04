@@ -1,6 +1,9 @@
-import 'package:desafio1_ioasys_flutter/components/appBar_comp.dart';
-import 'package:desafio1_ioasys_flutter/components/drawer_comp.dart';
 import 'package:flutter/material.dart';
+
+import '../components/appBar_comp.dart';
+import '../components/drawer_comp.dart';
+import '../components/textfield_comp.dart';
+import '../controllers/home_controller.dart';
 
 class ConverterPage extends StatefulWidget {
   @override
@@ -8,7 +11,16 @@ class ConverterPage extends StatefulWidget {
 }
 
 class _ConverterPageState extends State<ConverterPage> {
-  final TextEditingController _toDoController = TextEditingController();
+  final HomePageController controller = HomePageController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.dioRespository.getCurrencyRealToDollarAndEuro().then((value) {
+      controller.currency.dollar = value.dollar;
+      controller.currency.euro = value.euro;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,96 +30,38 @@ class _ConverterPageState extends State<ConverterPage> {
         'Conversor de Moedas',
         false,
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 12.5, horizontal: 110),
-            child: Icon(
-              Icons.attach_money,
-              color: Theme.of(context).primaryColor,
-              size: 145,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 17.5,
-              horizontal: 38,
-            ),
-            child: TextField(
-              
-              controller: _toDoController,
-              cursorColor: Theme.of(context).primaryColor,
-              decoration: InputDecoration(
-                labelText: 'Real',
-                labelStyle: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                ),
-                focusColor: Theme.of(context).accentColor,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 12.5, horizontal: 110),
+              child: Icon(
+                Icons.attach_money,
+                color: Theme.of(context).primaryColor,
+                size: 145,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 17.5,
-              horizontal: 38,
+            CustomTextFieldCoin(
+              'Real',
+              'R\$ ',
+              controller.realController,
+              onChanged: controller.realChanged,
             ),
-            child: TextField(
-              controller: _toDoController,
-              cursorColor: Theme.of(context).primaryColor,
-              decoration: InputDecoration(
-                labelText: 'Dólar',
-                labelStyle: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                ),
-                focusColor: Theme.of(context).accentColor,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            CustomTextFieldCoin(
+              'Dólar',
+              'US\$ ',
+              controller.dollarController,
+              onChanged: controller.dollarChanged,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 17.5,
-              horizontal: 38,
+            CustomTextFieldCoin(
+              'Euro',
+              '\€ ',
+              controller.euroController,
+              onChanged: controller.euroChanged,
             ),
-            child: TextField(
-              controller: _toDoController,
-              cursorColor: Theme.of(context).primaryColor,
-              decoration: InputDecoration(
-                labelText: 'Euro',
-                labelStyle: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                ),
-                focusColor: Theme.of(context).accentColor,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

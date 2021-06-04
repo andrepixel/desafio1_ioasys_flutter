@@ -87,7 +87,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 32, 0),
+                          padding: const EdgeInsets.fromLTRB(20, 0, 28, 0),
                           child: Icon(
                             Icons.playlist_add_check_sharp,
                             color: Theme.of(context).primaryColor,
@@ -115,7 +115,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(18, 0, 32, 0),
+                          padding: const EdgeInsets.fromLTRB(18, 0, 28, 0),
                           child: Icon(
                             Icons.attach_money,
                             color: Theme.of(context).primaryColor,
@@ -143,7 +143,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(18, 0, 32, 0),
+                          padding: const EdgeInsets.fromLTRB(18, 0, 28, 0),
                           child: Icon(
                             Icons.emoji_objects_outlined,
                             color: Theme.of(context).primaryColor,

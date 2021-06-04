@@ -10,7 +10,24 @@ __Página Home__
 
 __Página Calculadora IMC__
 
-![](assets/images/calculadora.png)
+![](assets/images/home.png)
+
+__Página do Menu__
+
+![](assets/images/menu.png)
+
+__Página Lista de Tarefas__
+
+![](assets/images/tarefas.png)
+
+__Página Conversor de Moedas__
+
+![](assets/images/conversor.png)
+
+__Página Sobre__
+
+![](assets/images/sobre.png)
+
 
 # Start Here
 
@@ -21,3 +38,5 @@ Para rodar o projeto é necessáro que você tenha, instalado no seu sistema:
 * xCode (MacOs)
 
 Além de uma IDE para inicilizar fácil o emulador com o projeto, indico o Visual Studio Code.
+
+Todo o código, está na pasta "lib/" e todas as imagens "local", está em "assets/images/".

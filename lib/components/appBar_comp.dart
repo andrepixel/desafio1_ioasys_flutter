@@ -29,9 +29,21 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   Widget valueRightPadding(bool vector, String title) {
-    if (vector == false && title.length < 18) {
+    if (vector == false && title.length < 18 && title.length > 10) {
       return Padding(
         padding: const EdgeInsets.fromLTRB(0, 20, 135, 0),
+        child: Text(
+          '$title',
+          style: TextStyle(
+            fontSize: 14,
+            fontFamily: 'Poppins',
+            color: Colors.white,
+          ),
+        ),
+      );
+    } else if (vector == false && title.length < 10) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(0, 20, 200, 0),
         child: Text(
           '$title',
           style: TextStyle(
